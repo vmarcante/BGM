@@ -1,0 +1,16 @@
+{
+    "compras":
+    [{
+        "id": 1,
+        "valor": "json-server",
+        "item": "typicode",
+        "data": "2020-11-04T16:30:10.710Z"
+    }],
+
+    "comments":
+    [{
+        "id": 1,
+        "body": "some comment",
+        "postId": 1
+    }]
+}
