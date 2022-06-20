@@ -1,32 +1,35 @@
-header {
+.box-home {
   background-color: white;
   padding: 10px;
   position: absolute;
-  display: flex;
-  right: 15px;
   border-color: black;
   border: solid;
-  border-width: 0px 1px 1px 1px;
-  border-bottom-left-radius: 15px;
+  border-width: 0px 0px 1px 1px;
   border-bottom-right-radius: 15px;
   width: fit-content;
   box-shadow: 0 0 8px rgba(0, 0, 0, 1);
+
+  .system-icon:hover {
+    transform: scale(1.2);
+    transition: .5s all;
+    -webkit-filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, .3));
+    filter:  drop-shadow(3px 3px 3px rgba(0, 0, 0, .3));
+  }
 }
 
-.pagina-atual {
-  color: white;
-}
-
-.system-icon:hover {
-  transform: scale(1.2);
-  transition: .5s;
-}
 
 
 .box-links {
-  display: flex;
-  align-items: center;
-  flex-direction: row wrap;
+  background-color: white;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  border-color: black;
+  border: solid;
+  border-width: 0px 1px 1px 0px;
+  border-bottom-left-radius: 15px;
+  width: fit-content;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 1);
   nav {
     margin-left: 3em;
     li {
@@ -41,8 +44,14 @@ header {
         text-transform: uppercase;
       }
 
+      .pagina-atual {
+        color: #b9efbd;
+      }
+
       a:hover {
-        color: lightgrey;
+        color: #32bea6;
+        transform: scale(1.05);
+        transition: .3s all;
       }
     }
   }

@@ -1,13 +1,16 @@
 <header>
-  <div class="box-links">
+  <div class="box-home">
     <a routerLink="home" routerLinkActive="pagina-atual">
       <img class="system-icon" src="../assets/img/moneyico.ico" alt="" width="50" height="50">
     </a>
+  </div>
+
+  <div class="box-links">
     <nav>
       <ul>
-        <li><a [routerLink]="['/routePath']" routerLinkActive="pagina-atual">Nova Compra</a></li>
+        <li><a [routerLink]="['/routePath']" routerLinkActive="pagina-atual">Nova Receita</a></li>
+        <li><a [routerLink]="['/routePath']" routerLinkActive="pagina-atual">Nova Despesa</a></li>
         <li><a [routerLink]="['/routePath']" routerLinkActive="pagina-atual">Extrato Mensal</a></li>
-        <li><a [routerLink]="['/routePath']" routerLinkActive="pagina-atual">Configurações</a></li>
       </ul>
     </nav>
   </div>
