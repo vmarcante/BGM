@@ -9,8 +9,10 @@ Para executar o projeto é necessário ter dois terminais-servidores em execuç�
 
 1.
 npm install @angular/cli
+
 ng s
 
 2.
 npm install -g json-server
+
 json-server --watch db/database.json
