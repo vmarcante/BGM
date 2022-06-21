@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-despesa-rapida',
-  templateUrl: './despesa-rapida.component.html',
-  styleUrls: ['./despesa-rapida.component.scss'],
+  selector: 'app-nova-despesa',
+  templateUrl: './nova-despesa.component.html',
+  styleUrls: ['./nova-despesa.component.scss'],
 })
-export class DespesaRapida implements OnInit {
+export class NovaDespesaComponent implements OnInit {
 
   public formulario : FormGroup;
   parcelamento : any[];

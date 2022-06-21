@@ -1,17 +1,17 @@
-import { DespesaRapida } from './despesa-rapida.component';
+import { NovaDespesaComponent } from './nova-despesa.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('HomeComponent', () => {
-  let component: DespesaRapida;
-  let fixture: ComponentFixture<DespesaRapida>;
+  let component: NovaDespesaComponent;
+  let fixture: ComponentFixture<NovaDespesaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DespesaRapida ]
+      declarations: [ NovaDespesaComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DespesaRapida);
+    fixture = TestBed.createComponent(NovaDespesaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
