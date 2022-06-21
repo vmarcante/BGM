@@ -15,7 +15,7 @@ export class NovaDespesaComponent implements OnInit {
     this.parcelamento = [];
     this.formulario = this.form.group({
       nomeItem: "",
-      valor: null,
+      valor: 0,
       parcelas : 1,
       dataCompra : new Date(),
       comentario: ""
@@ -25,9 +25,19 @@ export class NovaDespesaComponent implements OnInit {
 
   construirParcelas() {
     this.parcelamento.push({parcelas: 1, nome: "A vista"})
-    for (let i = 1; i < 10; i++) {
-      this.parcelamento.push({parcelas: i+1, nome: i+1 + " vezes"});
+    for (let i = 1; i < 12; i++) {
+      this.parcelamento.push({parcelas: i+1, nome: i+1 + " parcelas"});
     }
+  }
+
+  resetForm() {
+    this.formulario = this.form.group({
+      nomeItem: "",
+      valor: 0,
+      parcelas : 1,
+      dataCompra : new Date(),
+      comentario: ""
+    });
   }
 
   ngOnInit(): void {}

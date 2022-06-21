@@ -9,7 +9,7 @@
     <div class="auxiliar-forms">
       <mat-form-field appearance="outline" class="value-form">
         <mat-label>Valor</mat-label>
-        <input matInput formControlName="valor" placeholder="R$"/>
+        <input prefix="R$ " mask="separator.2" type="text" matInput formControlName="valor" placeholder="R$" [allowNegativeNumbers]="false"/>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="date-form">
@@ -18,7 +18,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="parcelas-form">
-        <mat-label>Parcelas</mat-label>
+        <mat-label>Parcelamento</mat-label>
         <mat-select formControlName="parcelas">
           <mat-option *ngFor="let parcela of parcelamento" [value]="parcela.parcelas">
             {{ parcela.nome }}
@@ -37,7 +37,7 @@
         <span style="font-family: 'Segoe UI'; font-size: 16px">Cadastrar despesa</span>
       </button>
 
-      <button type="submit" mat-raised-button class="button-despesa" style="background-color:lightgray;">
+      <button (click)="resetForm()" type="submit" mat-raised-button class="button-despesa" style="background-color:lightgray;">
         <span style="font-family: 'Segoe UI'; font-size: 16px">Limpar</span>
       </button>
     </div>

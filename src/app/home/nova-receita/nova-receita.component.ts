@@ -14,11 +14,21 @@ export class NovaReceitaComponent implements OnInit {
     this.formulario = this.form.group({
       descricaoReceita: "",
       recorrente: false,
-      valor: null,
+      valor: 0,
       data : new Date(),
       comentario: ""
     });
   }
 
   ngOnInit(): void {}
+
+  resetForm(){
+    this.formulario = this.form.group({
+      descricaoReceita: "",
+      recorrente: false,
+      valor: 0,
+      data : new Date(),
+      comentario: ""
+    });
+  }
 }
