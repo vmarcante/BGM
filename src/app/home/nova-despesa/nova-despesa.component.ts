@@ -15,7 +15,6 @@ export class NovaDespesaComponent implements OnInit {
     this.parcelamento = [];
     this.formulario = this.form.group({
       nomeItem: "",
-      descricaoCompra: "",
       valor: null,
       parcelas : 1,
       dataCompra : new Date(),

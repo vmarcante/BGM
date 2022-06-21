@@ -7,12 +7,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NovaDespesaComponent } from './home/nova-despesa/nova-despesa.component';
+import { NovaReceitaComponent } from './home/nova-receita/nova-receita.component';
+import { SobreComponent } from './sobre/sobre.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NovaDespesaComponent
+    NovaDespesaComponent,
+    NovaReceitaComponent,
+    SobreComponent
   ],
   imports: [
     BrowserModule,

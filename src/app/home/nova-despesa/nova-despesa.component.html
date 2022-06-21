@@ -12,6 +12,11 @@
         <input matInput formControlName="valor" placeholder="R$"/>
       </mat-form-field>
 
+      <mat-form-field appearance="outline" class="date-form">
+        <mat-label>Data de Compra</mat-label>
+        <input matInput formControlName="dataCompra" type="date" placeholder="Insira a data de compra do produto ou serviço">
+      </mat-form-field>
+
       <mat-form-field appearance="outline" class="parcelas-form">
         <mat-label>Parcelas</mat-label>
         <mat-select formControlName="parcelas">
@@ -19,11 +24,6 @@
             {{ parcela.nome }}
           </mat-option>
         </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="date-form">
-        <mat-label>Data de Compra</mat-label>
-        <input matInput formControlName="dataCompra" type="date" placeholder="Insira a data de compra do produto ou serviço">
       </mat-form-field>
     </div>
 

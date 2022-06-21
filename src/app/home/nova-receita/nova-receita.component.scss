@@ -1,0 +1,70 @@
+.container-receita {
+  z-index: 1;
+  background-color: white;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  top: 430px;
+  border-color: black;
+  border: solid;
+  border-width: 0px 1px 1px 0px;
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  width: 500px;
+  height: fit-content;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .5);
+    h2 {
+      font-weight: bold;
+      font-family: 'Segoe UI';
+      font-size: 18px;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 10px;
+    }
+}
+
+.name-form {
+  align-self: center;
+  margin:auto;
+  width: 480px;
+}
+
+.auxiliar-forms {
+  margin: 10px 0px 10px 0px;
+  width: 480px;
+  justify-content: space-between!important;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.value-form {
+  max-width: 90px;
+}
+
+.date-form {
+  max-width: 180px;
+}
+
+.comentario-form {
+  width: 480px;
+}
+
+.button-receita {
+  margin: 10px 0px 10px 0px;
+  text-align: center;
+  background: 0% 0% no-repeat padding-box;
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 8px;
+  text-transform: uppercase;
+  transform: scale(1.00);
+  transition: .2s all;
+}
+
+.button-receita:hover {
+  color:black;
+  transform: scale(1.05);
+  transition: .3s all;
+}
