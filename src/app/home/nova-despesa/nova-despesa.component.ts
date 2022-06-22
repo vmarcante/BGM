@@ -1,6 +1,6 @@
 import { Transacao } from './../../models/transacao.model';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
 import { NovaTransacaoService } from 'src/app/services/nova-transacao.service';
 
 @Component({
@@ -53,7 +53,7 @@ export class NovaDespesaComponent implements OnInit {
       objeto.data = objeto.data.split("T")[0];
     }
 
-    this.transacaoService.addNovaTransacao(objeto).subscribe( (res : any) => {
+    this.transacaoService.addNovaTransacao(objeto).subscribe( () => {
     this.transacaoService.updateTransacoes();
     this.isLoading = false;
     });

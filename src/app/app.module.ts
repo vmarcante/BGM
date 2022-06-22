@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ExtratoMesComponent } from './extrato/extrato-mes/extrato-mes.component';
 import { ExtratoComponent } from './extrato/extrato.component';
+import { ExtratoDiaComponent } from './extrato/extrato-mes/extrato-dia/extrato-dia.component';
 
 import { MaterialBaseModule } from './material-base.module';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,7 @@ import { NgxMaskModule } from 'ngx-mask'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     NovaReceitaComponent,
     SobreComponent,
     ExtratoComponent,
-    ExtratoMesComponent
+    ExtratoMesComponent,
+    ExtratoDiaComponent
   ],
   imports: [
     BrowserModule,
