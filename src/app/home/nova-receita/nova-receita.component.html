@@ -23,7 +23,7 @@
   </div>
 
     <div class="botoes" style="display: flex; justify-content: space-around;">
-      <button type="submit" mat-raised-button class="button-receita" style="background-color:#32bea6;">
+      <button (click)="cadastrarReceita()" [disabled]="isLoading" type="submit" mat-raised-button class="button-receita" style="background-color:#32bea6;">
         <span style="font-family: 'Segoe UI'; font-size: 16px">Cadastrar receita</span>
       </button>
 

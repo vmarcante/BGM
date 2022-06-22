@@ -46,10 +46,19 @@ ul {
   display: inline-flex;
   li {
     padding: 10px;
-    img {
-      image-rendering: black;
-      width: 60px;
-      height: 60px;
+    .image-link {
+      transform: scale(1);
+      transition: .5s all;
+      img {
+        image-rendering: black;
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    .image-link :hover {
+      transform: scale(1.1);
+      transition: .3s all;
     }
   }
 }

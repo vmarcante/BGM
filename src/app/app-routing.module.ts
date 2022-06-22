@@ -2,11 +2,13 @@ import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SobreComponent } from './sobre/sobre.component';
+import { ExtratoComponent } from './extrato/extrato.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'sobre', component: SobreComponent},
+  {path: 'extrato', component: ExtratoComponent}
 ];
 
 @NgModule({
