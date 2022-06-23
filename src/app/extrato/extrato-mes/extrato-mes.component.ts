@@ -10,12 +10,27 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ExtratoMesComponent implements OnInit {
   @Input() mes: TransacaoMes;
   transacoesOrdenadas : Transacao [] = [];
+  montante : number = 0;
 
   constructor() {
     this.mes = {};
   }
 
-  ngOnInit(): void {this.transacoesOrdenadas = this.ordenarDatas()}
+  ngOnInit(): void {
+    this.transacoesOrdenadas = this.ordenarDatas();
+    this.montarMontanteMes();
+  }
+
+  montarMontanteMes() {
+    this.mes.transacoes?.forEach( (transacao) => {
+      if (transacao.valor != null && transacao.tipo == "receita") {
+        this.montante += transacao.valor;
+      }
+      if (transacao.valor != null && transacao.tipo == "despesa") {
+        this.montante -= transacao.valor;
+      }
+    });
+  }
 
   ordenarDatas() {
     let transacoesOrdenadas: any = this.mes.transacoes?.slice();

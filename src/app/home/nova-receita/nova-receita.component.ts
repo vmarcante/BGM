@@ -35,7 +35,7 @@ export class NovaReceitaComponent implements OnInit {
   cadastrarReceita() {
     if (this.formulario.valid) {
       this.isLoading = true;
-      let objeto : Transacao = {
+      const receita : Transacao = {
         nome : this.formulario.get('descricaoReceita')?.value,
         valor : this.formulario.get('valor')?.value,
         data : this.formulario.get('data')?.value,
@@ -43,7 +43,7 @@ export class NovaReceitaComponent implements OnInit {
         tipo : "receita"
       }
 
-      this.transacaoService.addNovaTransacao(objeto).subscribe((_res : any) => {
+      this.transacaoService.addNovaTransacao(receita).subscribe((_res : any) => {
       this.resetForm();
       this.transacaoService.updateTransacoes();
       this.isLoading = false;

@@ -52,7 +52,7 @@ export class NovaDespesaComponent implements OnInit {
   cadastrarDespesa() {
     if (this.formulario.valid) {
       this.isLoading = true;
-      let objeto : Transacao = {
+      const despesa : Transacao = {
         nome : this.formulario.get('nomeItem')?.value,
         valor : this.formulario.get('valor')?.value,
         data : this.formulario.get('dataCompra')?.value,
@@ -61,7 +61,7 @@ export class NovaDespesaComponent implements OnInit {
         comentario : this.formulario.get('comentario')?.value != "" ? this.formulario.get('comentario')?.value : null,
       }
 
-      this.transacaoService.addNovaTransacao(objeto).subscribe( () => {
+      this.transacaoService.addNovaTransacao(despesa).subscribe( () => {
       this.resetForm();
       this.transacaoService.updateTransacoes();
       this.isLoading = false;

@@ -1,11 +1,31 @@
-.mes-title {
+.mes-container {
+  display: inline-block;
+  background-color: rgb(201, 201, 201);
+  padding: 10px;
+  margin: 5px;
+  border-width: 0px 1px 1px 0px;
+  border-radius: 5px;
+  min-height: 100px;
+}
+
+.mes-header {
   text-transform: uppercase;
   font-family: 'Segoe UI';
   font-size: 15px;
   font-weight: bold;
-  //border-bottom: 1px;
-  //border-bottom: solid;
   text-align: center;
   padding-bottom: 5px;
   border-width: 1px;
+  align-content: center;
+  display: flex;
+
+   .mes-title {
+      display: inline;
+      justify-content: center;
+   }
+
+   .montanteMes {
+      display: inline;
+      justify-content: flex-end;
+   }
 }
