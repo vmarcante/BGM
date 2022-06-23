@@ -1,0 +1,39 @@
+.container-dia {
+  border:  solid;
+  border-width: 1px;
+  border-width: 1px 0px 0px 0px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+.data {
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 0 10px 0 0;
+}
+
+.descricao {
+  text-justify: center;
+  margin-right: 20px;
+  margin: 0 10px 0 10px;
+}
+
+#valor {
+
+  font-weight: 500;
+  margin: 0 0 0 10px;
+  -webkit-text-stroke: .02em;
+  -webkit-text-stroke-color: rgb(73, 73, 73);
+}
+
+.despesa {
+  //text-shadow:#000 1px -1px, #000 -1px 1px, #000 1px 1px, #000 -1px -1px
+  //-webkit-text-stroke-width: 1px;
+}
+
+.receita {
+  color: rgb(17, 143, 0);
+}

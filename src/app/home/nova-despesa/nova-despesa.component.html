@@ -9,12 +9,17 @@
     <div class="auxiliar-forms">
       <mat-form-field appearance="outline" class="value-form">
         <mat-label>Valor</mat-label>
-        <input prefix="R$ " mask="separator.2" type="text" matInput formControlName="valor" placeholder="R$" [allowNegativeNumbers]="false"/>
+        <input matInput formControlName="valor" type="text"
+        prefix="R$ " placeholder="R$" mask="separator.2"
+        [allowNegativeNumbers]="false"
+        thousandSeparator="," decimaMarker="."/>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="date-form">
         <mat-label>Data de Compra</mat-label>
-        <input matInput formControlName="dataCompra" type="date" placeholder="Insira a data de compra do produto ou serviço">
+        <input matInput formControlName="dataCompra" type="text"
+        mask="d0/M0/0000" placeholder="Insira uma data"
+        [leadZeroDateTime]="true" [dropSpecialCharacters]="false">
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="parcelas-form">

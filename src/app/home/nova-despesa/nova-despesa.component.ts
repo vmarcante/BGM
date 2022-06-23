@@ -1,7 +1,8 @@
 import { Transacao } from './../../models/transacao.model';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { NovaTransacaoService } from 'src/app/services/nova-transacao.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-nova-despesa',
@@ -21,14 +22,24 @@ export class NovaDespesaComponent implements OnInit {
   )
   {
     this.parcelamento = [];
-    this.formulario = this.form.group({
-      nomeItem: "",
-      valor: 0,
+    this.formulario = this.setupForm();
+  }
+
+  ngOnInit(): void {
+    this.construirParcelas();
+  }
+
+  setupForm() {
+    return this.form.group({
+      nomeItem: new FormControl('', [Validators.required]),
+      valor: new FormControl(0, [Validators.required, Validators.min(0.01)]),
       parcelas : 1,
-      dataCompra : new Date(),
+      dataCompra : new FormControl(
+        moment(new Date()).format("DD/MM/YYYY"),
+        [Validators.required, Validators.minLength(10)]
+        ),
       comentario: ""
     });
-    this.construirParcelas();
   }
 
   construirParcelas() {
@@ -39,36 +50,34 @@ export class NovaDespesaComponent implements OnInit {
   }
 
   cadastrarDespesa() {
-    this.isLoading = true;
-    let objeto : Transacao = {
-      nome : this.formulario.get('nomeItem')?.value,
-      valor : this.formulario.get('valor')?.value,
-      data : this.formulario.get('dataCompra')?.value,
-      parcelas: this.formulario.get('parcelas')?.value,
-      tipo : "despesa",
-      comentario : this.formulario.get('comentario')?.value != "" ? this.formulario.get('comentario')?.value : null,
+    if (this.formulario.valid) {
+      this.isLoading = true;
+      let objeto : Transacao = {
+        nome : this.formulario.get('nomeItem')?.value,
+        valor : this.formulario.get('valor')?.value,
+        data : this.formulario.get('dataCompra')?.value,
+        parcelas: this.formulario.get('parcelas')?.value,
+        tipo : "despesa",
+        comentario : this.formulario.get('comentario')?.value != "" ? this.formulario.get('comentario')?.value : null,
+      }
+
+      this.transacaoService.addNovaTransacao(objeto).subscribe( () => {
+      this.resetForm();
+      this.transacaoService.updateTransacoes();
+      this.isLoading = false;
+      });
+    } else {
+      this.formulario.markAllAsTouched();
     }
-
-    if (objeto.data) {
-      objeto.data = objeto.data.split("T")[0];
-    }
-
-    this.transacaoService.addNovaTransacao(objeto).subscribe( () => {
-    this.transacaoService.updateTransacoes();
-    this.isLoading = false;
-    });
-
   }
 
   resetForm() {
-    this.formulario = this.form.group({
-      nomeItem: "",
-      valor: 0,
-      parcelas : 1,
-      dataCompra : new Date(),
-      comentario: ""
-    });
+    this.formulario.get('nomeItem')?.setValue('');
+    this.formulario.get('valor')?.setValue(0);
+    this.formulario.get('dataCompra')?.setValue(moment(new Date()).format("DD/MM/YYYY"));
+    this.formulario.get('parcelas')?.setValue(1);
+    this.formulario.get('comentario')?.setValue('');
+    this.formulario.markAsUntouched();
+    this.formulario.updateValueAndValidity();
   }
-
-  ngOnInit(): void {}
 }

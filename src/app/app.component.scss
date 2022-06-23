@@ -2,6 +2,7 @@
   z-index: 3;
   background-color: white;
   padding: 10px;
+  top: 0;
   position: fixed;
   border-color: black;
   border: solid;
@@ -27,8 +28,9 @@
   z-index: 3;
   background-color: white;
   padding: 10px;
-  position: absolute;
+  position: fixed;
   right: 0;
+  top: 0;
   border-color: black;
   border: solid;
   border-width: 0px 1px 1px 0px;
@@ -59,4 +61,8 @@
       transition: .3s all;
     }
   }
+}
+
+main {
+  overflow-y: auto;
 }

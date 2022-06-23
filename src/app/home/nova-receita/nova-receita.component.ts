@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import * as moment from 'moment';
 import { Transacao } from 'src/app/models/transacao.model';
 import { NovaTransacaoService } from 'src/app/services/nova-transacao.service';
 
@@ -14,44 +15,50 @@ export class NovaReceitaComponent implements OnInit {
   public isLoading : boolean = false;
 
   constructor(private form : FormBuilder, private transacaoService : NovaTransacaoService) {
-    this.formulario = this.form.group({
-      descricaoReceita: "",
-      recorrente: false,
-      valor: 0,
-      data : new Date(),
-    });
+    this.formulario = this.setupForm();
   }
 
   ngOnInit(): void {}
 
-  cadastrarReceita() {
-    this.isLoading = true;
-    let objeto : Transacao = {
-      nome : this.formulario.get('descricaoReceita')?.value,
-      valor : this.formulario.get('valor')?.value,
-      data : this.formulario.get('data')?.value,
-      recorrente: this.formulario.get('recorrente')?.value,
-      tipo : "receita"
-    }
-
-    if (objeto.data) {
-      objeto.data = objeto.data.split("T")[0];
-    }
-
-    this.transacaoService.addNovaTransacao(objeto).subscribe( (res : any) => {
-    this.transacaoService.updateTransacoes();
-    this.isLoading = false;
+  setupForm() {
+    return this.form.group({
+      descricaoReceita: new FormControl('', [Validators.required]),
+      recorrente: false,
+      valor: new FormControl(0, [Validators.required, Validators.min(0.01)]),
+      data : new FormControl(
+        moment(new Date()).format("DD/MM/YYYY"),
+        [Validators.required, Validators.minLength(10)]
+        ),
     });
-
   }
 
-  resetForm(){
-    this.formulario = this.form.group({
-      descricaoReceita: "",
-      recorrente: false,
-      valor: 0,
-      data : new Date(),
-      comentario: ""
-    });
+  cadastrarReceita() {
+    if (this.formulario.valid) {
+      this.isLoading = true;
+      let objeto : Transacao = {
+        nome : this.formulario.get('descricaoReceita')?.value,
+        valor : this.formulario.get('valor')?.value,
+        data : this.formulario.get('data')?.value,
+        recorrente: this.formulario.get('recorrente')?.value,
+        tipo : "receita"
+      }
+
+      this.transacaoService.addNovaTransacao(objeto).subscribe((_res : any) => {
+      this.resetForm();
+      this.transacaoService.updateTransacoes();
+      this.isLoading = false;
+      });
+    } else {
+      this.formulario.markAllAsTouched();
+    }
+  }
+
+  resetForm() {
+    this.formulario.get('descricaoReceita')?.setValue('');
+    this.formulario.get('valor')?.setValue(0);
+    this.formulario.get('data')?.setValue(moment(new Date()).format("DD/MM/YYYY"));
+    this.formulario.get('recorrente')?.setValue(false);
+    this.formulario.markAsUntouched();
+    this.formulario.updateValueAndValidity();
   }
 }

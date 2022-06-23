@@ -2,7 +2,7 @@
   <div class="mes-title">
     {{ mes?.nomeMes }}
   </div>
-  <div *ngFor="let transacao of mes.transacoes" class="item-transacao">
-    {{ transacao.nome}} - R$ {{ transacao.valor }} - Data: {{ transacao.data}}
+  <div *ngFor="let transacao of transacoesOrdenadas" class="item-transacao">
+    <app-extrato-dia [transacao]="transacao"></app-extrato-dia>
   </div>
 </div>

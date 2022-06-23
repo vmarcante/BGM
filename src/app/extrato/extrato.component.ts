@@ -11,7 +11,6 @@ import { NovaTransacaoService } from '../services/nova-transacao.service';
 export class ExtratoComponent implements OnInit {
   todasTransacoes: Transacao[] = [];
   transacoesMes: TransacaoMes[] = [];
-  ordenedTransacoes : Transacao[] = [];
 
   constructor(private transacaoService: NovaTransacaoService) {}
 
@@ -46,30 +45,12 @@ export class ExtratoComponent implements OnInit {
     }
 
 
-    this.separarPorMeses(this.ordenarDatas());
+    this.separarPorMeses();
   }
 
-  ordenarDatas() {
-    let transacoesOrdenadas: any = this.todasTransacoes.slice();
-
-    transacoesOrdenadas.forEach((_array: any) => {
-      transacoesOrdenadas.forEach((_array2: any, j: any) => {
-        let dataAtual : number = transacoesOrdenadas[j] ? transacoesOrdenadas[j]?.data.split('-')[2] : null;
-        let dataProx : number = transacoesOrdenadas[j + 1] ? transacoesOrdenadas[j + 1]?.data.split('-')[2] : null;
-        if (dataAtual != null && dataProx != null && dataAtual > dataProx) {
-          let troca = transacoesOrdenadas[j];
-          transacoesOrdenadas[j] = transacoesOrdenadas[j + 1];
-          transacoesOrdenadas[j + 1] = troca;
-        }
-      });
-    });
-
-    return transacoesOrdenadas;
-  }
-
-  separarPorMeses(todasTransacoes : any []) {
-    for (let transacao of todasTransacoes) {
-      let mesData = transacao.data?.split('-')[1];
+  separarPorMeses() {
+    for (let transacao of this.todasTransacoes) {
+      let mesData = transacao.data?.split('/' || '-')[1];
       this.transacoesMes.forEach((mes, i) => {
         if (mesData?.toString() === mes.numeroMes) {
           this.transacoesMes[i].transacoes?.push(transacao);
