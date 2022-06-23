@@ -3,16 +3,16 @@
   background-color: white;
   padding: 5px;
   display: flex;
-  margin-top: 100px;
+  justify-content: center;
   //top right bottom left
-  margin : 20vh auto 0 auto;
-  top: 60px;
+  margin : 10px auto 0 auto;
   border-color: black;
   border: solid;
   border-width: 0px 1px 1px 0px;
   border-radius: 15px;
   width: fit-content;
-  max-width: 95vw;
+  max-width: 99vw;
+  flex-wrap: wrap;
   height: fit-content;
   box-shadow: 0 0 8px rgba(0, 0, 0, .5);
     h2 {

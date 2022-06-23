@@ -1,5 +1,5 @@
-<div class="container-dia">
-  <div class="data">Dia {{ transacao.data }}</div>
+<div class="container-dia" fxLayout="row" fxLayoutAlign="space-between">
+  <div class="data">{{ transacao.data }}</div>
   <div class="descricao">{{ transacao.nome }}</div>
   <div id="valor" [ngClass]="{'despesa' : transacao.tipo == 'despesa','receita' : transacao.tipo == 'receita'}">
    <span *ngIf="transacao.tipo == 'receita'">+ </span>R$ {{ transacao.valor }}

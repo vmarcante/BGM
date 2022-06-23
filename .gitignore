@@ -40,3 +40,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+runApplication.bat
+runDatabase.bat
+db/database.json

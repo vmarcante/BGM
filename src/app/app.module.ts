@@ -16,6 +16,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxMaskModule } from 'ngx-mask'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { FlexAlignDirective, FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -37,6 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialBaseModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FlexModule,
+    FlexLayoutModule,
     NgxMaskModule.forRoot()
 
   ],

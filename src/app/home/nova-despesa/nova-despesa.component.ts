@@ -64,7 +64,9 @@ export class NovaDespesaComponent implements OnInit {
       this.transacaoService.addNovaTransacao(despesa).subscribe( () => {
       this.resetForm();
       this.transacaoService.updateTransacoes();
-      this.isLoading = false;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 100);
       });
     } else {
       this.formulario.markAllAsTouched();

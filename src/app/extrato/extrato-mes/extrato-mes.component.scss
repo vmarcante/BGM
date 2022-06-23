@@ -1,11 +1,14 @@
 .mes-container {
   display: inline-block;
-  background-color: rgb(201, 201, 201);
+  background-color: rgb(255, 255, 255);
   padding: 10px;
-  margin: 5px;
-  border-width: 0px 1px 1px 0px;
-  border-radius: 5px;
-  min-height: 100px;
+  margin: 2px;
+  border: solid;
+  border-width: 1px 1px 1px 1px;
+  border-radius: 5px 5px 5px 5px;
+  width: 243px;
+  height: 150px;
+
 }
 
 .mes-header {
@@ -16,16 +19,29 @@
   text-align: center;
   padding-bottom: 5px;
   border-width: 1px;
-  align-content: center;
-  display: flex;
+  padding: 0 10px 7px 10px;
+}
 
-   .mes-title {
-      display: inline;
-      justify-content: center;
-   }
+.mes-title {
+  width: fit-content;
+}
 
-   .montanteMes {
-      display: inline;
-      justify-content: flex-end;
-   }
+.montanteMes {
+  display: inline-block;
+  border-bottom: 1px solid;
+  padding-bottom: 3px;
+}
+
+.container-dias::-webkit-scrollbar {
+  width: 4px;               /* width of the entire scrollbar */
+}
+
+.container-dias::-webkit-scrollbar-track {
+  background: none;        /* color of the tracking area */
+}
+
+.container-dias::-webkit-scrollbar-thumb {
+  background-color: rgb(52, 52, 75);    /* color of the scroll thumb */
+  border-radius: 2px;       /* roundness of the scroll thumb */
+  //border: 3px solid none;  /* creates padding around scroll thumb */
 }

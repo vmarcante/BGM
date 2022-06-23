@@ -46,7 +46,9 @@ export class NovaReceitaComponent implements OnInit {
       this.transacaoService.addNovaTransacao(receita).subscribe((_res : any) => {
       this.resetForm();
       this.transacaoService.updateTransacoes();
-      this.isLoading = false;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 100);
       });
     } else {
       this.formulario.markAllAsTouched();
