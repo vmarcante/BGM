@@ -3,7 +3,7 @@
   <form [formGroup]="formulario">
     <mat-form-field appearance="outline" class="name-form">
       <mat-label>Nome do produto</mat-label>
-      <input matInput formControlName="nomeItem" placeholder="Insira o nome do produto"/>
+      <input matInput maxlength="40" formControlName="nomeItem" placeholder="Insira o nome do produto"/>
     </mat-form-field>
 
     <div class="auxiliar-forms">

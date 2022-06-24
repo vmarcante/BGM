@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import * as moment from 'moment';
 import { Transacao } from 'src/app/models/transacao.model';
-import { NovaTransacaoService } from 'src/app/services/nova-transacao.service';
+import { TransacoesService } from 'src/app/services/transacoes/transacoes.service';
 
 @Component({
   selector: 'app-nova-receita',
@@ -14,7 +14,7 @@ export class NovaReceitaComponent implements OnInit {
   public formulario : FormGroup;
   public isLoading : boolean = false;
 
-  constructor(private form : FormBuilder, private transacaoService : NovaTransacaoService) {
+  constructor(private form : FormBuilder, private transacaoService : TransacoesService) {
     this.formulario = this.setupForm();
   }
 
@@ -45,7 +45,6 @@ export class NovaReceitaComponent implements OnInit {
 
       this.transacaoService.addNovaTransacao(receita).subscribe((_res : any) => {
       this.resetForm();
-      this.transacaoService.updateTransacoes();
       setTimeout(() => {
         this.isLoading = false;
       }, 100);

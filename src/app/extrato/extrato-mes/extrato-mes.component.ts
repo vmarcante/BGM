@@ -35,7 +35,7 @@ export class ExtratoMesComponent implements OnInit {
   ordenarDatas() {
     let transacoesOrdenadas: any = this.mes.transacoes?.slice();
 
-    transacoesOrdenadas.forEach((_array: any) => {
+    /*transacoesOrdenadas.forEach((_array: any) => {
       transacoesOrdenadas.forEach((_array2: any, j: any) => {
         let dataAtual : number = transacoesOrdenadas[j] ? transacoesOrdenadas[j]?.data.split('/' || '-')[0] : null;
         let dataProx : number = transacoesOrdenadas[j + 1] ? transacoesOrdenadas[j + 1]?.data.split('/' || '-')[0] : null;
@@ -46,7 +46,7 @@ export class ExtratoMesComponent implements OnInit {
           transacoesOrdenadas[j + 1] = troca;
         }
       });
-    });
+    });*/
 
     return transacoesOrdenadas;
   }

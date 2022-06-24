@@ -1,7 +1,7 @@
 import { Transacao } from './../../models/transacao.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import { NovaTransacaoService } from 'src/app/services/nova-transacao.service';
+import { TransacoesService } from 'src/app/services/transacoes/transacoes.service';
 import * as moment from 'moment';
 
 @Component({
@@ -18,7 +18,7 @@ export class NovaDespesaComponent implements OnInit {
   constructor
   (
     private form : FormBuilder,
-    private transacaoService : NovaTransacaoService
+    private transacaoService : TransacoesService
   )
   {
     this.parcelamento = [];
@@ -63,7 +63,6 @@ export class NovaDespesaComponent implements OnInit {
 
       this.transacaoService.addNovaTransacao(despesa).subscribe( () => {
       this.resetForm();
-      this.transacaoService.updateTransacoes();
       setTimeout(() => {
         this.isLoading = false;
       }, 100);

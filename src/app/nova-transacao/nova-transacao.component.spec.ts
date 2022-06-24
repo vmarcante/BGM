@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeComponent } from './home.component';
+import { NovaTransacaoComponent } from './nova-transacao.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('NovaTransacaoComponent', () => {
+  let component: NovaTransacaoComponent;
+  let fixture: ComponentFixture<NovaTransacaoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [ NovaTransacaoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(NovaTransacaoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

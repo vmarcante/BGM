@@ -1,7 +1,7 @@
 import { Transacao } from 'src/app/models/transacao.model';
 import { TransacaoMes } from './../models/transacoesMes.model';
 import { Component, OnInit } from '@angular/core';
-import { NovaTransacaoService } from '../services/nova-transacao.service';
+import { TransacoesService } from '../services/transacoes/transacoes.service';
 
 @Component({
   selector: 'app-extrato',
@@ -12,7 +12,7 @@ export class ExtratoComponent implements OnInit {
   todasTransacoes: Transacao[] = [];
   transacoesMes: TransacaoMes[] = [];
 
-  constructor(private transacaoService: NovaTransacaoService) {}
+  constructor(private transacaoService: TransacoesService) {}
 
   ngOnInit(): void {
     this.getAllTransacoes();
@@ -26,6 +26,7 @@ export class ExtratoComponent implements OnInit {
   }
 
   construirMeses() {
+    this.transacoesMes = [];
     let nomeMes = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
 
     for (let i = 1; i <= 12; i++) {

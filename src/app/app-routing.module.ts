@@ -1,12 +1,12 @@
-import { HomeComponent } from './home/home.component';
+import { NovaTransacaoComponent } from './nova-transacao/nova-transacao.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SobreComponent } from './sobre/sobre.component';
 import { ExtratoComponent } from './extrato/extrato.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
+  {path: '', redirectTo: 'transacao', pathMatch: 'full'},
+  {path: 'transacao', component: NovaTransacaoComponent},
   {path: 'sobre', component: SobreComponent},
   {path: 'extrato', component: ExtratoComponent}
 ];

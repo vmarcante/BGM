@@ -1,4 +1,6 @@
+import { ExtratoComponent } from './../../extrato.component';
 import { Component, Input, OnInit } from '@angular/core';
+import { TransacoesService } from 'src/app/services/transacoes/transacoes.service';
 
 @Component({
   selector: 'app-extrato-dia',
@@ -8,15 +10,23 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ExtratoDiaComponent implements OnInit {
 
   @Input() transacao : any;
+  detalhes : boolean = false;
 
-  constructor() { this.transacao = {} }
+  constructor(private transacaoService : TransacoesService, private extratoGeral : ExtratoComponent) { this.transacao = {} }
 
   ngOnInit() {
     this.transacao.data = this.transacao.data.split('/')[0] + "/" + this.transacao.data.split('/')[1];
-    if (this.transacao.valor.toString().includes('.')) {
-      this.transacao.valor = (Math.round(this.transacao.valor * 100) / 100).toFixed(2);
-    } else {
-      this.transacao.valor = (Math.round(this.transacao.valor * 100) / 100).toFixed(0);
-    }
+    this.transacao.valor = (Math.round(this.transacao.valor * 100) / 100).toFixed(this.transacao.valor.toString().includes('.') ? 2 : 0);
   }
+
+  changeDetalhes() {
+    this.detalhes = !this.detalhes;
+  }
+
+  deleteTransacao() {
+    this.transacaoService.deleteTransacaoById(this.transacao.id).subscribe((_res : any) => {
+      this.extratoGeral.getAllTransacoes();
+    });
+  }
+
 }

@@ -1,8 +1,35 @@
-<div class="container-dia" fxLayout="row" fxLayoutAlign="space-between">
-  <div class="data">{{ transacao.data }}</div>
+<div
+  fxLayout="row"  fxLayoutAlign="space-between"
+  [ngClass]="{ 'container-dia': !detalhes, 'container-dia-detalhes': detalhes }"
+>
+  <button [ngClass]="{'button-down': !detalhes, 'button-up': detalhes}" (click)="changeDetalhes()">
+    <mat-icon>keyboard_arrow_down</mat-icon>
+  </button>
   <div class="descricao">{{ transacao.nome }}</div>
-  <div id="valor" [ngClass]="{'despesa' : transacao.tipo == 'despesa','receita' : transacao.tipo == 'receita'}">
-   <span *ngIf="transacao.tipo == 'receita'">+ </span>R$ {{ transacao.valor }}
+  <div
+    id="valor"
+    [ngClass]="{
+      despesa: transacao.tipo == 'despesa',
+      receita: transacao.tipo == 'receita'
+    }"
+  >
+    <span *ngIf="transacao.tipo == 'receita'">+ </span>R$ {{ transacao.valor }}
   </div>
 </div>
 
+<div
+  *ngIf="detalhes"
+  class="container-detalhes"
+  fxLayout="row"
+  fxLayoutAlign="space-between"
+>
+  <div class="data">{{ transacao.data }}</div>
+
+  <div>
+    <span>{{ transacao.comentario }}</span>
+  </div>
+  <div>
+    <button><mat-icon>edit</mat-icon></button>
+    <button (click)="deleteTransacao()" class="delete-button"><mat-icon>delete</mat-icon></button>
+  </div>
+</div>

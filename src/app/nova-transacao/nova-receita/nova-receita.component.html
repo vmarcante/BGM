@@ -3,7 +3,7 @@
   <form [formGroup]="formulario">
     <mat-form-field appearance="outline" class="name-form">
       <mat-label>Descrição da receita</mat-label>
-      <input matInput formControlName="descricaoReceita" placeholder="Insira a origem da receita"/>
+      <input matInput maxlength="40" formControlName="descricaoReceita" placeholder="Insira a origem da receita"/>
     </mat-form-field>
 
     <div class="auxiliar-forms">

@@ -1,17 +1,44 @@
 .container-dia {
   border:  solid;
-  border-width: 1px;
-  border-width: 1px 0px 0px 0px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+  border-width: 0px 0px 1px 0px;
+  box-shadow: 0 0 0 0px rgba(0, 0, 0, .2);
   padding: 10px;
   //justify-content: space-between;
   font-size: 15px;
+  align-items: center !important;
+}
+
+.container-dia-detalhes {
+  border:  solid;
+  border-width: 1px 1px 0px 1px;
+  border-radius: 5px 5px 0px 0px;
+  padding: 9px;
+  //justify-content: space-between;
+  font-size: 15px;
+  align-items: center !important;
+
+  .descricao {
+    border:  solid;
+    padding-bottom: 5px;
+    border-width: 0px 0px 1px 0px;
+  }
+}
+
+.container-detalhes {
+  border:  solid;
+  border-width: 0px 1px 1px 1px;
+  border-radius: 0px 0px 5px 5px;
+  //box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+  padding: 0px 10px 10px 10px;
+  //justify-content: space-between;
+  align-items: center !important;
 }
 
 .data {
   text-transform: uppercase;
   font-weight: 500;
   margin: 0 10px 0 0;
+  font-size: 13px;
 }
 
 .descricao {
@@ -21,7 +48,6 @@
 }
 
 #valor {
-
   font-weight: 500;
   margin: 0 0 0 10px;
   -webkit-text-stroke: .02em;
@@ -31,3 +57,38 @@
 .receita {
   color: rgb(17, 143, 0);
 }
+
+button {
+  padding: 0px !important;
+  border: none;
+  background: none;
+
+}
+
+.delete-button:hover {
+  color: rgb(230, 34, 34);
+  transition: .3s all;
+}
+
+button:hover {
+  cursor: pointer;
+  color: rgb(22, 163, 57);
+  transition: .2s all;
+
+  .delete-button {
+    color: black;
+    transition: .2s all;
+  }
+}
+
+.button-up {
+  //transform: rotate(90deg);
+  transition: .2s all;
+}
+
+.button-down {
+  transform: rotate(-90deg);
+  transition: .2s all;
+}
+
+
