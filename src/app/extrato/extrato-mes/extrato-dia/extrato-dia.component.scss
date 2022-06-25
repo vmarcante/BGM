@@ -4,16 +4,20 @@
 }
 
 .container-dia {
+  background-color: white;
   border:  solid;
   border-width: 0px 0px 1px 0px;
   box-shadow: 0 0 0 0px rgba(0, 0, 0, .2);
   padding: 10px;
+  border-radius: 15px;
   //justify-content: space-between;
   font-size: 15px;
   align-items: center !important;
+  margin-bottom: 3px;
 }
 
 .container-dia-detalhes {
+  background-color: white;
   border:  solid;
   border-width: 1px 1px 0px 1px;
   border-radius: 15px 15px 0px 0px;
@@ -26,11 +30,12 @@
     border:  solid;
     padding-bottom: 5px;
     border-width: 0px 0px 1px 0px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
 }
 
 .container-detalhes {
+  background-color: white;
   border:  solid;
   border-width: 0px 1px 1px 1px;
   border-radius: 0px 0px 15px 15px;
@@ -38,6 +43,7 @@
   padding: 0px 10px 10px 10px;
   //justify-content: space-between;
   align-items: center !important;
+  margin-bottom: 2px;
 }
 
 .data {

@@ -19,7 +19,7 @@
       <span class="parcela" *ngIf="transacao.parcelas > 1" fxLayoutAlign="end">
         {{ transacao.parcelaAtual }}/{{ transacao.parcelas }}
       </span>
-      <span *ngIf="transacao.tipo == 'receita'">+ </span>R$ {{ transacao.valor }}
+      R$ {{ transacao.valor }}
     </div>
 
   </div>

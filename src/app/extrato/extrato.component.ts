@@ -60,12 +60,36 @@ export class ExtratoComponent implements OnInit {
       let mesData: number = transacao.data
         ? parseInt(transacao.data?.split('/')[1])
         : 1;
+
+      if (transacao.recorrente && transacao.tipo == "receita") {
+        let mesAtual = '';
+        for (let i = mesData - 1; i < 12; i++) {
+
+          if (i >= 9) {mesAtual = (i+1).toString();}
+          else {mesAtual = "0" + (i+1);}
+          this.transacoesMes[i].transacoes?.push({
+            data: transacao.data?.split('/')[0] + '/' + mesAtual + '/' + transacao.data?.split('/')[2],
+            nome: transacao.nome,
+            tipo: transacao.tipo,
+            valor: transacao.valor,
+            comentario: transacao.comentario,
+            id: transacao.id,
+            recorrente: transacao.recorrente,
+          });
+        }
+        continue;
+      }
+
       if (transacao.parcelas != null && transacao.parcelas > 1) {
         let parcelaAtual = 1;
+        let mesAtual = '';
         for (let i = mesData - 1; i < mesData + transacao.parcelas - 1; i++) {
-          if (i > 11) { continue; }
+
+          if (i >= 12) { continue; }
+          else if (i >= 9) {mesAtual = (i+1).toString();}
+          else {mesAtual = "0" + (i+1);}
           this.transacoesMes[i].transacoes?.push({
-            data: transacao.data,
+            data: transacao.data?.split('/')[0] + '/' + mesAtual + '/' + transacao.data?.split('/')[2],
             nome: transacao.nome,
             tipo: transacao.tipo,
             valor: transacao.valor / transacao.parcelas,
@@ -79,6 +103,8 @@ export class ExtratoComponent implements OnInit {
         }
         continue;
       }
+
+
       this.transacoesMes[mesData - 1].transacoes?.push(transacao);
     }
     this.montarMontanteMes();
@@ -102,14 +128,10 @@ export class ExtratoComponent implements OnInit {
   }
 
   realizarBalancoGeral() {
-    let valorTotal = 0;
     for (let i = 0; i < 12; i++) {
       let saldo = 0;
       for (let j = 0; j <= i; j++) {
         saldo += this.transacoesMes[j].montanteMes;
-      }
-      if (i == this.transacoesMes.length - 1) {
-        valorTotal = saldo;
       }
       this.transacoesMes[i].saldoFinalMes = saldo;
     }
