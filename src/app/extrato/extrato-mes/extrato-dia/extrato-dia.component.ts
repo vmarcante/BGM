@@ -11,11 +11,15 @@ export class ExtratoDiaComponent implements OnInit {
 
   @Input() transacao : any;
   detalhes : boolean = false;
+  valorTotal : number = 0;
 
   constructor(private transacaoService : TransacoesService, private extratoGeral : ExtratoComponent) { this.transacao = {} }
 
   ngOnInit() {
     this.transacao.data = this.transacao.data.split('/')[0] + "/" + this.transacao.data.split('/')[1];
+    if (this.transacao.parcelas > 1) {
+      this.valorTotal = this.transacao.valor * this.transacao.parcelas;
+    }
     this.transacao.valor = (Math.round(this.transacao.valor * 100) / 100).toFixed(this.transacao.valor.toString().includes('.') ? 2 : 0);
   }
 

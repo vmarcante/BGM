@@ -44,6 +44,12 @@ ul {
   display: inline-flex;
   li {
     padding: 10px;
+
+    .image-link :hover {
+      transform: scale(1.1);
+      transition: .3s all;
+    }
+
     .image-link {
       transform: scale(1);
       transition: .5s all;
@@ -54,9 +60,6 @@ ul {
       }
     }
 
-    .image-link :hover {
-      transform: scale(1.1);
-      transition: .3s all;
-    }
+
   }
 }

@@ -7,7 +7,7 @@
   border-width: 1px 1px 1px 1px;
   border-radius: 5px 5px 5px 5px;
   width: 465px;
-  height: 200px;
+  height: 269px;
 
 }
 
@@ -18,7 +18,8 @@
   font-weight: bold;
   text-align: center;
   padding-bottom: 5px;
-  border-width: 1px;
+  //border:solid black;
+  //border-width: 0px 0px 1px 0px;
   padding: 0 10px 7px 10px;
 }
 
@@ -32,16 +33,20 @@
   padding-bottom: 3px;
 }
 
+.container-dias {
+  border-radius: 15px;
+}
+
 .container-dias::-webkit-scrollbar {
-  width: 4px;               /* width of the entire scrollbar */
+  width: 4px;
 }
 
 .container-dias::-webkit-scrollbar-track {
-  background: none;        /* color of the tracking area */
+  background: none;
 }
 
 .container-dias::-webkit-scrollbar-thumb {
-  background-color: rgb(52, 52, 75);    /* color of the scroll thumb */
-  border-radius: 2px;       /* roundness of the scroll thumb */
-  //border: 3px solid none;  /* creates padding around scroll thumb */
+  background-color: rgb(52, 52, 75);
+  border-radius: 2px;
+  //border: 3px solid none;
 }

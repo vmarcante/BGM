@@ -2,18 +2,26 @@
   fxLayout="row"  fxLayoutAlign="space-between"
   [ngClass]="{ 'container-dia': !detalhes, 'container-dia-detalhes': detalhes }"
 >
-  <button [ngClass]="{'button-down': !detalhes, 'button-up': detalhes}" (click)="changeDetalhes()">
+  <button
+    [ngClass]="{ 'button-down': !detalhes, 'button-up': detalhes }"
+    (click)="changeDetalhes()" >
     <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
+
   <div class="descricao">{{ transacao.nome }}</div>
-  <div
-    id="valor"
+  <div id="valor"
     [ngClass]="{
       despesa: transacao.tipo == 'despesa',
       receita: transacao.tipo == 'receita'
     }"
   >
-    <span *ngIf="transacao.tipo == 'receita'">+ </span>R$ {{ transacao.valor }}
+    <div fxLayout="column" fxLayoutAlign="end">
+      <span class="parcela" *ngIf="transacao.parcelas > 1" fxLayoutAlign="end">
+        {{ transacao.parcelaAtual }}/{{ transacao.parcelas }}
+      </span>
+      <span *ngIf="transacao.tipo == 'receita'">+ </span>R$ {{ transacao.valor }}
+    </div>
+
   </div>
 </div>
 
@@ -23,13 +31,20 @@
   fxLayout="row"
   fxLayoutAlign="space-between"
 >
-  <div class="data">{{ transacao.data }}</div>
+  <div fxLayout="column">
+    <span class="data">{{ transacao.data }}</span>
+    <span class="data" *ngIf="transacao.parcelas > 1">R$ {{ valorTotal }}</span>
+  </div>
 
   <div>
     <span>{{ transacao.comentario }}</span>
   </div>
+
   <div>
     <button><mat-icon>edit</mat-icon></button>
-    <button (click)="deleteTransacao()" class="delete-button"><mat-icon>delete</mat-icon></button>
+    <button (click)="deleteTransacao()" class="delete-button">
+      <mat-icon>delete</mat-icon>
+    </button>
   </div>
+
 </div>

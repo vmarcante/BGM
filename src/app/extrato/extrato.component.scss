@@ -1,20 +1,12 @@
 .container-extrato {
   z-index: 2;
-  background-color: white;
-  padding: 5px;
   display: flex;
   justify-content: center;
-  //top right bottom left
   margin : 10px auto 0 auto;
-  border-color: black;
-  border: solid;
-  border-width: 0px 1px 1px 0px;
-  border-radius: 15px;
   width: fit-content;
   max-width: 99.5vw;
   flex-wrap: wrap;
   height: fit-content;
-  box-shadow: 0 0 8px rgba(0, 0, 0, .5);
     h2 {
       font-weight: bold;
       font-family: 'Segoe UI';

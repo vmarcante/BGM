@@ -1,3 +1,8 @@
+.parcela {
+  padding: 0px 0px 5px 0;
+  font-size: 10px;
+}
+
 .container-dia {
   border:  solid;
   border-width: 0px 0px 1px 0px;
@@ -11,7 +16,7 @@
 .container-dia-detalhes {
   border:  solid;
   border-width: 1px 1px 0px 1px;
-  border-radius: 5px 5px 0px 0px;
+  border-radius: 15px 15px 0px 0px;
   padding: 9px;
   //justify-content: space-between;
   font-size: 15px;
@@ -21,13 +26,14 @@
     border:  solid;
     padding-bottom: 5px;
     border-width: 0px 0px 1px 0px;
+    margin-bottom: 4px;
   }
 }
 
 .container-detalhes {
   border:  solid;
   border-width: 0px 1px 1px 1px;
-  border-radius: 0px 0px 5px 5px;
+  border-radius: 0px 0px 15px 15px;
   //box-shadow: 0 0 8px rgba(0, 0, 0, .2);
   padding: 0px 10px 10px 10px;
   //justify-content: space-between;

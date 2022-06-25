@@ -1,21 +1,25 @@
-<div class="mes-container">
+<div class="mes-container" style="background-color: lightgray;">
   <div class="mes-header" fxLayout="row" fxLayoutAlign="space-between">
     <span>2022</span>
 
     <div class="mes-title">
-      <span>{{ mes?.nomeMes }}</span>
+      <span>{{ mes.nomeMes }}</span>
     </div>
 
     <div class="montanteMes">
-      <span>{{ montante }} </span>
+      <span>R$ {{ mes.montanteMes }} </span>
     </div>
-
   </div>
 
-  <div class="container-dias" style="overflow: auto; max-height: 180px;" >
-    <div *ngFor="let transacao of transacoesOrdenadas" class="item-transacao">
+  <div class="container-dias" style="overflow: auto; height: 217px; max-height: 217px; background-color: white;">
+    <div *ngFor="let transacao of mes.transacoes" class="item-transacao">
       <app-extrato-dia [transacao]="transacao"></app-extrato-dia>
     </div>
   </div>
 
+  <div class="mes-header" fxLayout="row" fxLayoutAlign="end center" >
+    <div class="montanteMes" style="border: none; padding-top: 10px;">
+      <span>Saldo: R$ {{ mes.saldoFinalMes }} </span>
+    </div>
+  </div>
 </div>
