@@ -23,14 +23,20 @@
         [leadZeroDateTime]="true" [dropSpecialCharacters]="false">
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="parcelas-form">
-        <mat-label>Parcelamento</mat-label>
-        <mat-select formControlName="parcelas">
-          <mat-option *ngFor="let parcela of parcelamento" [value]="parcela.parcelas">
-            {{ parcela.nome }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div fxLayout="column" style="align-items: center;">
+        <mat-form-field appearance="outline" class="parcelas-form">
+          <mat-label>Parcelamento</mat-label>
+          <mat-select formControlName="parcelas">
+            <mat-option *ngFor="let parcela of parcelamento" [value]="parcela.parcelas">
+              {{ parcela.nome }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-checkbox (change)="toggleForm()"formControlName="recorrente" class="check-form">
+          <mat-label>Recorrente</mat-label>
+        </mat-checkbox>
+      </div>
     </div>
 
     <mat-form-field appearance="outline" class="comentario-form">

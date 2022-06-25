@@ -47,6 +47,7 @@ export class NovaDespesaComponent implements OnInit {
 
         this.dadosEdicao = res;
         this.formulario = this.setupForm(this.edicaoTransacao.edicao);
+        this.toggleForm();
       });
     }
     this.construirParcelas();
@@ -66,6 +67,7 @@ export class NovaDespesaComponent implements OnInit {
           Validators.minLength(10),
         ]),
         comentario: this.dadosEdicao.comentario,
+        recorrente: this.dadosEdicao.recorrente
       });
     }
 
@@ -78,7 +80,17 @@ export class NovaDespesaComponent implements OnInit {
         Validators.minLength(10),
       ]),
       comentario: '',
+      recorrente: false
     });
+  }
+
+  toggleForm() {
+    if (this.formulario.get('recorrente')?.value) {
+      this.formulario.get('parcelas')?.setValue(1);
+      this.formulario.get('parcelas')?.disable();
+    } else {
+      this.formulario.get('parcelas')?.enable();
+    }
   }
 
   construirParcelas() {
@@ -97,7 +109,7 @@ export class NovaDespesaComponent implements OnInit {
         data: this.formulario.get('dataCompra')?.value,
         parcelas: this.formulario.get('parcelas')?.value,
         tipo: 'despesa',
-        recorrente: false,
+        recorrente: this.formulario.get('recorrente')?.value,
         comentario:
           this.formulario.get('comentario')?.value != ''
             ? this.formulario.get('comentario')?.value
@@ -131,6 +143,7 @@ export class NovaDespesaComponent implements OnInit {
     this.formulario.get('dataCompra')?.setValue(moment(new Date()).format('DD/MM/YYYY'));
     this.formulario.get('parcelas')?.setValue(1);
     this.formulario.get('comentario')?.setValue('');
+    this.formulario.get('recorrente')?.setValue(false);
     this.formulario.markAsUntouched();
     this.formulario.updateValueAndValidity();
   }

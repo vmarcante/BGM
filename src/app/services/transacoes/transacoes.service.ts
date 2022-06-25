@@ -7,10 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TransacoesService {
 
-  private transacoes : Transacao [];
 
   constructor( private httpClient: HttpClient) {
-    this.transacoes = [];
   }
 
   getAllTransacoes() {
