@@ -1,8 +1,14 @@
-import { Transacao } from './../../models/transacao.model';
+import { Transacao } from '../../models/transacao.model';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { TransacoesService } from 'src/app/services/transacoes/transacoes.service';
 import * as moment from 'moment';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-nova-despesa',
@@ -10,63 +16,110 @@ import * as moment from 'moment';
   styleUrls: ['./nova-despesa.component.scss'],
 })
 export class NovaDespesaComponent implements OnInit {
+  public formulario: FormGroup;
+  parcelamento: any[];
+  isLoading: boolean = false;
+  edicaoTransacao: any = {
+    edicao: false,
+    id: 0,
+    tipo: '',
+  };
+  dadosEdicao: any = {};
 
-  public formulario : FormGroup;
-  parcelamento : any[];
-  isLoading : boolean = false;
-
-  constructor
-  (
-    private form : FormBuilder,
-    private transacaoService : TransacoesService
-  )
-  {
+  constructor(
+    private form: FormBuilder,
+    private transacaoService: TransacoesService,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.parcelamento = [];
-    this.formulario = this.setupForm();
+    this.formulario = this.setupForm(false);
   }
 
   ngOnInit(): void {
+    if (this.activatedRoute.snapshot.params['id'] != '') {
+      const id = this.activatedRoute.snapshot.params['id'];
+      this.transacaoService.getDadosTransacao(id).subscribe((res: any) => {
+        this.edicaoTransacao = {
+          edicao: res.tipo == 'despesa' ? true : false,
+          id: id,
+          tipo: res.tipo,
+        };
+
+        this.dadosEdicao = res;
+        this.formulario = this.setupForm(this.edicaoTransacao.edicao);
+      });
+    }
     this.construirParcelas();
   }
 
-  setupForm() {
+  setupForm(edicao: boolean) {
+    if (edicao) {
+      return this.form.group({
+        nomeItem: new FormControl(this.dadosEdicao.nome, [Validators.required]),
+        valor: new FormControl(this.dadosEdicao.valor, [
+          Validators.required,
+          Validators.min(0.01),
+        ]),
+        parcelas: this.dadosEdicao.parcelas,
+        dataCompra: new FormControl(this.dadosEdicao.data, [
+          Validators.required,
+          Validators.minLength(10),
+        ]),
+        comentario: this.dadosEdicao.comentario,
+      });
+    }
+
     return this.form.group({
       nomeItem: new FormControl('', [Validators.required]),
       valor: new FormControl(0, [Validators.required, Validators.min(0.01)]),
-      parcelas : 1,
-      dataCompra : new FormControl(
-        moment(new Date()).format("DD/MM/YYYY"),
-        [Validators.required, Validators.minLength(10)]
-        ),
-      comentario: ""
+      parcelas: 1,
+      dataCompra: new FormControl(moment(new Date()).format('DD/MM/YYYY'), [
+        Validators.required,
+        Validators.minLength(10),
+      ]),
+      comentario: '',
     });
   }
 
   construirParcelas() {
-    this.parcelamento.push({parcelas: 1, nome: "A vista"})
+    this.parcelamento.push({ parcelas: 1, nome: 'A vista' });
     for (let i = 1; i < 12; i++) {
-      this.parcelamento.push({parcelas: i+1, nome: i+1 + " parcelas"});
+      this.parcelamento.push({ parcelas: i + 1, nome: i + 1 + ' parcelas' });
     }
   }
 
   cadastrarDespesa() {
     if (this.formulario.valid) {
       this.isLoading = true;
-      const despesa : Transacao = {
-        nome : this.formulario.get('nomeItem')?.value,
-        valor : this.formulario.get('valor')?.value,
-        data : this.formulario.get('dataCompra')?.value,
+      let despesa: Transacao = {
+        nome: this.formulario.get('nomeItem')?.value,
+        valor: this.formulario.get('valor')?.value,
+        data: this.formulario.get('dataCompra')?.value,
         parcelas: this.formulario.get('parcelas')?.value,
-        tipo : "despesa",
-        comentario : this.formulario.get('comentario')?.value != "" ? this.formulario.get('comentario')?.value : null,
-      }
+        tipo: 'despesa',
+        recorrente: false,
+        comentario:
+          this.formulario.get('comentario')?.value != ''
+            ? this.formulario.get('comentario')?.value
+            : null,
+      };
 
-      this.transacaoService.addNovaTransacao(despesa).subscribe( () => {
-      this.resetForm();
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 100);
-      });
+      if (this.edicaoTransacao.tipo) {
+        despesa.id = this.edicaoTransacao.id;
+        this.transacaoService.editarDadosTransacao(despesa).subscribe(() => {
+          this.resetForm();
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 100);
+        });
+      } else {
+        this.transacaoService.addNovaTransacao(despesa).subscribe(() => {
+          this.resetForm();
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 100);
+        });
+      }
     } else {
       this.formulario.markAllAsTouched();
     }
@@ -75,7 +128,7 @@ export class NovaDespesaComponent implements OnInit {
   resetForm() {
     this.formulario.get('nomeItem')?.setValue('');
     this.formulario.get('valor')?.setValue(0);
-    this.formulario.get('dataCompra')?.setValue(moment(new Date()).format("DD/MM/YYYY"));
+    this.formulario.get('dataCompra')?.setValue(moment(new Date()).format('DD/MM/YYYY'));
     this.formulario.get('parcelas')?.setValue(1);
     this.formulario.get('comentario')?.setValue('');
     this.formulario.markAsUntouched();

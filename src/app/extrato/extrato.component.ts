@@ -2,6 +2,7 @@ import { Transacao } from 'src/app/models/transacao.model';
 import { TransacaoMes } from './../models/transacoesMes.model';
 import { Component, OnInit } from '@angular/core';
 import { TransacoesService } from '../services/transacoes/transacoes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-extrato',
@@ -11,18 +12,30 @@ import { TransacoesService } from '../services/transacoes/transacoes.service';
 export class ExtratoComponent implements OnInit {
   todasTransacoes: Transacao[] = [];
   transacoesMes: TransacaoMes[] = [];
+  isLoading: boolean = false;
 
-  constructor(private transacaoService: TransacoesService) {}
+  constructor(
+    private transacaoService: TransacoesService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getAllTransacoes();
   }
 
+  semRegistro() {
+    this.router.navigateByUrl('transacao');
+  }
+
   getAllTransacoes() {
+    this.isLoading = true;
     this.transacaoService.getAllTransacoes().subscribe((res: any) => {
       this.todasTransacoes = res;
       this.construirMeses();
     });
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
   }
 
   construirMeses() {
@@ -57,18 +70,19 @@ export class ExtratoComponent implements OnInit {
 
   separarPorMeses() {
     for (let transacao of this.todasTransacoes) {
-      let mesData: number = transacao.data
-        ? parseInt(transacao.data?.split('/')[1])
-        : 1;
+      let mesData: number = transacao.data ? parseInt(transacao.data?.split('/')[1]) : 1;
+      let mesAtual = '';
 
-      if (transacao.recorrente && transacao.tipo == "receita") {
-        let mesAtual = '';
-        for (let i = mesData - 1; i < 12; i++) {
-
-          if (i >= 9) {mesAtual = (i+1).toString();}
-          else {mesAtual = "0" + (i+1);}
+      if (transacao.recorrente) {
+        for (let i = mesData - 1; i <  12 ; i++) {
+          mesAtual = i >= 9 ? (i+1).toString() : '0' + (i + 1);
           this.transacoesMes[i].transacoes?.push({
-            data: transacao.data?.split('/')[0] + '/' + mesAtual + '/' + transacao.data?.split('/')[2],
+            data:
+              transacao.data?.split('/')[0] +
+              '/' +
+              mesAtual +
+              '/' +
+              transacao.data?.split('/')[2],
             nome: transacao.nome,
             tipo: transacao.tipo,
             valor: transacao.valor,
@@ -82,14 +96,16 @@ export class ExtratoComponent implements OnInit {
 
       if (transacao.parcelas != null && transacao.parcelas > 1) {
         let parcelaAtual = 1;
-        let mesAtual = '';
         for (let i = mesData - 1; i < mesData + transacao.parcelas - 1; i++) {
-
-          if (i >= 12) { continue; }
-          else if (i >= 9) {mesAtual = (i+1).toString();}
-          else {mesAtual = "0" + (i+1);}
+          if (i >= 12 ) {continue;}
+          mesAtual = i >= 9 ? (i+1).toString() : '0' + (i + 1);
           this.transacoesMes[i].transacoes?.push({
-            data: transacao.data?.split('/')[0] + '/' + mesAtual + '/' + transacao.data?.split('/')[2],
+            data:
+              transacao.data?.split('/')[0] +
+              '/' +
+              mesAtual +
+              '/' +
+              transacao.data?.split('/')[2],
             nome: transacao.nome,
             tipo: transacao.tipo,
             valor: transacao.valor / transacao.parcelas,
@@ -97,13 +113,12 @@ export class ExtratoComponent implements OnInit {
             id: transacao.id,
             parcelas: transacao.parcelas,
             recorrente: transacao.recorrente,
-            parcelaAtual: parcelaAtual
+            parcelaAtual: parcelaAtual,
           });
           parcelaAtual++;
         }
         continue;
       }
-
 
       this.transacoesMes[mesData - 1].transacoes?.push(transacao);
     }
@@ -121,7 +136,9 @@ export class ExtratoComponent implements OnInit {
           saldo -= transacao.valor;
         }
       });
-      this.transacoesMes[i].montanteMes = parseInt((Math.round(saldo * 100) / 100).toFixed(2));
+      this.transacoesMes[i].montanteMes = parseInt(
+        (Math.round(saldo * 100) / 100).toFixed(2)
+      );
     });
 
     this.realizarBalancoGeral();
@@ -150,5 +167,7 @@ export class ExtratoComponent implements OnInit {
         ++i;
       }
     }
+
+    this.isLoading = false;
   }
 }

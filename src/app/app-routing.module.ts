@@ -5,8 +5,9 @@ import { SobreComponent } from './sobre/sobre.component';
 import { ExtratoComponent } from './extrato/extrato.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'transacao', pathMatch: 'full'},
-  {path: 'transacao', component: NovaTransacaoComponent},
+  {path: 'transacao', redirectTo: 'transacao/', pathMatch: 'full'},
+  {path: '', redirectTo: 'transacao/', pathMatch: 'full'},
+  {path: 'transacao/:id', component: NovaTransacaoComponent},
   {path: 'sobre', component: SobreComponent},
   {path: 'extrato', component: ExtratoComponent}
 ];

@@ -4,7 +4,7 @@
 >
   <button
     [ngClass]="{ 'button-down': !detalhes, 'button-up': detalhes }"
-    (click)="changeDetalhes()" >
+    (click)="toggleDetalhes()" >
     <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
 
@@ -33,6 +33,7 @@
 >
   <div fxLayout="column">
     <span class="data">{{ transacao.data }}</span>
+    <span class="data" *ngIf="transacao.recorrente">RECORRENTE</span>
     <span class="data" *ngIf="transacao.parcelas > 1">R$ {{ valorTotal }}</span>
   </div>
 
@@ -41,7 +42,7 @@
   </div>
 
   <div>
-    <button><mat-icon>edit</mat-icon></button>
+    <button (click)="editarTransacao()"><mat-icon>edit</mat-icon></button>
     <button (click)="deleteTransacao()" class="delete-button">
       <mat-icon>delete</mat-icon>
     </button>

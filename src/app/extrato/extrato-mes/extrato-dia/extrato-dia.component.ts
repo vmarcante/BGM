@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ExtratoComponent } from './../../extrato.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { TransacoesService } from 'src/app/services/transacoes/transacoes.service';
@@ -13,7 +14,7 @@ export class ExtratoDiaComponent implements OnInit {
   detalhes : boolean = false;
   valorTotal : number = 0;
 
-  constructor(private transacaoService : TransacoesService, private extratoGeral : ExtratoComponent) { this.transacao = {} }
+  constructor(private transacaoService : TransacoesService, private extratoGeral : ExtratoComponent, private route : Router) { this.transacao = {} }
 
   ngOnInit() {
     this.transacao.data = this.transacao.data.split('/')[0] + "/" + this.transacao.data.split('/')[1];
@@ -23,8 +24,12 @@ export class ExtratoDiaComponent implements OnInit {
     this.transacao.valor = (Math.round(this.transacao.valor * 100) / 100).toFixed(this.transacao.valor.toString().includes('.') ? 2 : 0);
   }
 
-  changeDetalhes() {
+  toggleDetalhes() {
     this.detalhes = !this.detalhes;
+  }
+
+  editarTransacao() {
+    this.route.navigateByUrl('transacao/' + this.transacao.id);
   }
 
   deleteTransacao() {
