@@ -86,9 +86,10 @@ export class NovaDespesaComponent implements OnInit {
 
   toggleForm() {
     if (this.formulario.get('recorrente')?.value) {
-      this.formulario.get('parcelas')?.setValue(1);
+      this.formulario.get('parcelas')?.setValue(0);
       this.formulario.get('parcelas')?.disable();
     } else {
+      this.formulario.get('parcelas')?.setValue(1);
       this.formulario.get('parcelas')?.enable();
     }
   }

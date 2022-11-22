@@ -7,7 +7,7 @@
     </div>
 
     <div class="montanteMes">
-      <span>R$ {{ mes.montanteMes }} </span>
+      <span>R$ <span *ngIf="mes.montanteMes > 0">+</span>{{ mes.montanteMes }} </span>
     </div>
   </div>
 

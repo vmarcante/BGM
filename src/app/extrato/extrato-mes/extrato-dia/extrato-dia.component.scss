@@ -6,11 +6,11 @@
 
 .container-dia {
   background-color: white;
-  border:  solid;
+  border: solid;
   border-width: 0px 0px 1px 0px;
   box-shadow: 0 0 0 0px rgba(0, 0, 0, .2);
   padding: 10px;
-  border-radius: 15px;
+  border-radius: 8px;
   //justify-content: space-between;
   font-size: 15px;
   align-items: center !important;
@@ -19,18 +19,19 @@
 
 .container-dia-detalhes {
   background-color: white;
-  border:  solid;
+  border: solid;
   border-width: 1px 1px 0px 1px;
   border-radius: 15px 15px 0px 0px;
   padding: 9px;
   //justify-content: space-between;
   font-size: 15px;
   align-items: center !important;
+
 }
 
 .container-detalhes {
   background-color: white;
-  border:  solid;
+  border: solid;
   border-width: 0px 1px 1px 1px;
   border-radius: 0px 0px 15px 15px;
   //box-shadow: 0 0 8px rgba(0, 0, 0, .2);
@@ -38,6 +39,21 @@
   //justify-content: space-between;
   align-items: center !important;
   margin-bottom: 2px;
+  animation-name: resizeDetails;
+  animation-duration: .06s;
+}
+
+@keyframes resizeDetails {
+  10%  {height: 3px;}
+  20%  {height: 5px;}
+  30%  {height: 8px;}
+  40%  {height: 11px;}
+  50%  {height: 14px;}
+  60%  {height: 17px;}
+  70%  {height: 19px;}
+  80%  {height: 22px;}
+  90%  {height: 25px;}
+  100% {height: 28px;}
 }
 
 .data {
@@ -59,9 +75,11 @@
   -webkit-text-stroke: .02em;
   -webkit-text-stroke-color: rgb(73, 73, 73);
 }
+
 .despesa {
   color: rgb(255, 84, 53);
 }
+
 .receita {
   color: rgb(17, 143, 0);
 }
@@ -98,5 +116,3 @@ button:hover {
   transform: rotate(-90deg);
   transition: .2s all;
 }
-
-

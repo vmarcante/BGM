@@ -64,6 +64,7 @@ export class NovaReceitaComponent implements OnInit {
           Validators.required,
           Validators.minLength(10),
         ]),
+        comentario: this.dadosEdicao.comentario,
       });
     }
     return this.form.group({
@@ -73,7 +74,9 @@ export class NovaReceitaComponent implements OnInit {
       data: new FormControl(moment(new Date()).format('DD/MM/YYYY'), [
         Validators.required,
         Validators.minLength(10),
+
       ]),
+      comentario: '',
     });
   }
 
@@ -86,6 +89,10 @@ export class NovaReceitaComponent implements OnInit {
         data: this.formulario.get('data')?.value,
         recorrente: this.formulario.get('recorrente')?.value,
         tipo: 'receita',
+        comentario:
+          this.formulario.get('comentario')?.value != ''
+            ? this.formulario.get('comentario')?.value
+            : null,
       };
 
       if (this.edicaoTransacao.tipo) {
@@ -118,6 +125,7 @@ export class NovaReceitaComponent implements OnInit {
       .get('data')
       ?.setValue(moment(new Date()).format('DD/MM/YYYY'));
     this.formulario.get('recorrente')?.setValue(false);
+    this.formulario.get('comentario')?.setValue('');
     this.formulario.markAsUntouched();
     this.formulario.updateValueAndValidity();
   }
