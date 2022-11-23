@@ -26,15 +26,17 @@
   }
 }
 
-.box-links {
+.side-bar-links {
   z-index: 3;
   background-color: white;
   padding: 10px;
-  margin : auto;
   border: solid black;
-  border-radius: 0 0 15px 15px;
+  // border-radius: 0 15px 15px 0;
   border-width: 0px 1px 1px 0px;
-  width: 500px;
+  width: 370px;
+  position: fixed;
+  
+  height: 98vh;
   box-shadow: 0 0 8px rgba(0, 0, 0, .5);
   li {
     display: inline-flex;

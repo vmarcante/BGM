@@ -1,10 +1,8 @@
 //Componentes
-import { NovaDespesaComponent } from './nova-transacao/nova-despesa/nova-despesa.component';
-import { NovaReceitaComponent } from './nova-transacao/nova-receita/nova-receita.component';
+import { NovaTransacaoComponent } from './nova-transacao/nova-transacao.component';
 import { SobreComponent } from './sobre/sobre.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NovaTransacaoComponent } from './nova-transacao/nova-transacao.component';
 import { ExtratoMesComponent } from './extrato/extrato-mes/extrato-mes.component';
 import { ExtratoComponent } from './extrato/extrato.component';
 import { ExtratoDiaComponent } from './extrato/extrato-mes/extrato-dia/extrato-dia.component';
@@ -23,8 +21,6 @@ import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
   declarations: [
     AppComponent,
     NovaTransacaoComponent,
-    NovaDespesaComponent,
-    NovaReceitaComponent,
     SobreComponent,
     ExtratoComponent,
     ExtratoMesComponent,

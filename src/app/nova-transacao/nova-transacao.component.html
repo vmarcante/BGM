@@ -1,3 +1,81 @@
-<app-nova-despesa></app-nova-despesa>
-<app-nova-receita></app-nova-receita>
+<div class="container-despesa">
+  <hr /><br>
+  <div class="row space-between">
+    <h2 id="titulo" class="titulo-transacao">Nova Transação</h2>
 
+    <form [formGroup]="tipoFormulario">
+      <mat-form-field appearance="outline" class="tipo-transacao-form">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="tipoTransacao">
+          <mat-option [value]="'despesa'">Despesa</mat-option>
+          <mat-option [value]="'receita'">Receita</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+
+  </div>
+
+
+
+  <form [formGroup]="formulario">
+    <mat-form-field appearance="outline" class="name-form">
+      <mat-label>{{nomeLabel}}</mat-label>
+      <input matInput maxlength="40" formControlName="nomeItem" placeholder={{placeholderNome}} />
+    </mat-form-field>
+
+    <div class="auxiliar-forms">
+      <mat-form-field appearance="outline" class="value-form">
+        <mat-label>Valor</mat-label>
+        <input matInput formControlName="valor" type="text" prefix="R$ " placeholder="R$" mask="separator.2"
+          [allowNegativeNumbers]="false" thousandSeparator="," decimaMarker="." />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="date-form">
+        <mat-label>{{dataLabel}}</mat-label>
+        <input matInput formControlName="dataCompra" type="text" mask="d0/M0/0000" placeholder="Insira uma data"
+          [leadZeroDateTime]="true" [dropSpecialCharacters]="false">
+      </mat-form-field>
+
+      <div fxLayout="column" style="align-items: center;"
+        *ngIf="tipoFormulario.get('tipoTransacao')?.value == 'despesa'">
+        <mat-form-field appearance="outline" class="parcelas-form">
+          <mat-label>Parcelamento</mat-label>
+          <mat-select formControlName="parcelas">
+            <mat-option *ngFor="let parcela of parcelamento" [value]="parcela.parcelas">
+              {{ parcela.nome }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-checkbox (change)="toggleForm()" formControlName="recorrente" class="check-form">
+          <mat-label>Recorrente</mat-label>
+        </mat-checkbox>
+      </div>
+
+      <div *ngIf="tipoFormulario.get('tipoTransacao')?.value == 'receita'" style="margin-top: 20px">
+        <mat-checkbox (change)="toggleForm()" formControlName="recorrente" class="check-form">
+          <mat-label>Recorrente</mat-label>
+        </mat-checkbox>
+      </div>
+
+    </div>
+
+    <mat-form-field appearance="outline" class="comentario-form">
+      <mat-label>Observações</mat-label>
+      <textarea style="resize: none;" matInput formControlName="comentario"
+        placeholder="Insira alguma observação sobre a transação."></textarea>
+    </mat-form-field>
+
+
+    <div class="botoes" style="display: flex; justify-content: space-around;">
+      <button (click)="resetForm()" type="submit" mat-raised-button class="button-transacao"
+        style="background-color:lightgray;">
+        <span>Limpar</span>
+      </button>
+      <button (click)="cadastrarDespesa()" [disabled]="isLoading" type="submit" mat-raised-button
+        class="button-transacao" style="background-color:#32bea6;">
+        <span id="span-button">Cadastrar</span>
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,74 @@
+.container-despesa {
+  z-index: 2;
+  background-color: white;
+  padding: 10px;
+  position: fixed;
+  bottom: 2px;
+  width: 350px;
+  height: fit-content;
+    h2 {
+      font-weight: bold;
+      font-family: 'Segoe UI';
+      font-size: 18px;
+      text-transform: uppercase;
+      padding: 0 10px 10px 0;
+    }
+}
+
+.button-transacaoa {
+  font-family: 'Segoe UI'; font-size: 16px
+}
+
+.name-form {
+  align-self: center;
+  margin: auto;
+  width: 330px;
+}
+
+.tipo-transacao-form {
+  max-width: 110px;
+  margin-right: 20px;
+}
+
+.auxiliar-forms {
+  margin: 10px 0px 10px 0px;
+  width: 330px;
+  justify-content: space-between!important;
+  display: flex;
+  align-content: center;
+}
+
+.value-form {
+  max-width: 70px;
+}
+
+.parcelas-form {
+  max-width: 100px;
+}
+
+.date-form {
+  max-width: 120px;
+}
+
+.comentario-form {
+  width: 330px;
+}
+
+.button-transacao {
+  margin: 10px 0px 10px 0px;
+  text-align: center;
+  background: 0% 0% no-repeat padding-box;
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 8px;
+  text-transform: uppercase;
+  transform: scale(1.00);
+  transition: .2s all;
+}
+
+.button-transacao:hover {
+  color:black;
+  transform: scale(1.05);
+  transition: .3s all;
+}
