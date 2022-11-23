@@ -1,22 +1,23 @@
 
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
-
 @Injectable({
   providedIn: 'root'
 })
 export class UtilService {
-  private emitChangeSource = new Subject<any>();
-  changeEmitted$ = this.emitChangeSource.asObservable();
+  constructor() {}
+
+  private idObservable = new Subject<any>();
+  private updateObservable = new Subject<any>();
+  changeEmitted$ = this.idObservable.asObservable();
+  updateEmitted$ = this.updateObservable.asObservable();
+
+
   emitChange(change: any) {
-      this.emitChangeSource.next(change);
+      if (change == 'atualizar') {
+        this.updateObservable.next(change);
+      } else {
+        this.idObservable.next(change);
+      }
   }
-  constructor() {
-  }
-}
-
-
-@Injectable()
-export class SharedService {
-    
 }

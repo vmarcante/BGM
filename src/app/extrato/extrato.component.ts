@@ -3,6 +3,7 @@ import { TransacaoMes } from './../models/transacoesMes.model';
 import { Component, OnInit } from '@angular/core';
 import { TransacoesService } from '../services/transacoes/transacoes.service';
 import { Router } from '@angular/router';
+import { UtilService } from '../services/shared/util.service';
 
 @Component({
   selector: 'app-extrato',
@@ -16,8 +17,13 @@ export class ExtratoComponent implements OnInit {
 
   constructor(
     private transacaoService: TransacoesService,
+    private utilService: UtilService,
     private router: Router
-  ) {}
+  ) {
+    this.utilService.updateEmitted$.subscribe(() => {
+      this.getAllTransacoes();
+    });
+  }
 
   ngOnInit(): void {
     this.getAllTransacoes();

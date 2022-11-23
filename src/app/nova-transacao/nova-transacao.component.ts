@@ -8,7 +8,6 @@ import {
 } from '@angular/forms';
 import { TransacoesService } from 'src/app/services/transacoes/transacoes.service';
 import * as moment from 'moment';
-import { ActivatedRoute } from '@angular/router';
 import { UtilService } from '../services/shared/util.service';
 
 @Component({
@@ -126,7 +125,7 @@ export class NovaTransacaoComponent implements OnInit {
         nome: this.formulario.get('nomeItem')?.value,
         valor: this.formulario.get('valor')?.value,
         data: this.formulario.get('dataCompra')?.value,
-        tipo: this.tipoFormulario.get('tipoFormulario')?.value,
+        tipo: this.tipoFormulario.get('tipoTransacao')?.value,
         recorrente: this.formulario.get('recorrente')?.value,
         comentario:
           this.formulario.get('comentario')?.value != ''
@@ -134,7 +133,7 @@ export class NovaTransacaoComponent implements OnInit {
             : null,
       };
 
-      if (this.tipoFormulario.get('tipoFormulario')?.value == 'despesa') {
+      if (this.tipoFormulario.get('tipoTransacao')?.value == 'despesa') {
         transacao.parcelas = this.formulario.get('parcelas')?.value;
       }
 
@@ -143,17 +142,20 @@ export class NovaTransacaoComponent implements OnInit {
         this.transacaoService.editarDadosTransacao(transacao).subscribe(() => {
           this.resetForm();
           setTimeout(() => {
+            this.utilService.emitChange('atualizar');
             this.isLoading = false;
-          }, 100);
+          }, 200);
         });
       } else {
         this.transacaoService.addNovaTransacao(transacao).subscribe(() => {
           this.resetForm();
           setTimeout(() => {
+            this.utilService.emitChange('atualizar');
             this.isLoading = false;
-          }, 100);
+          }, 200);
         });
       }
+
     } else {
       this.formulario.markAllAsTouched();
     }
@@ -166,7 +168,7 @@ export class NovaTransacaoComponent implements OnInit {
     this.formulario.get('parcelas')?.setValue(1);
     this.formulario.get('comentario')?.setValue('');
     this.formulario.get('recorrente')?.setValue(false);
-    this.tipoFormulario.get('tipoFormulario')?.setValue('despesa')
+    this.tipoFormulario.get('tipoTransacao')?.setValue('despesa')
     this.formulario.markAsUntouched();
     this.formulario.updateValueAndValidity();
   }
