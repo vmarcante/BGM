@@ -1,0 +1,29 @@
+<div class="formDiv">
+    <hr/>
+    <form [formGroup]="filterForm" class="row">
+
+        <div class="row">
+            <mat-form-field appearance="outline" class="mes-field">
+                <mat-label>Mês</mat-label>
+                <input matInput maxlength="2" type="text" mask="00" min="00" max="12" formControlName="mes" />
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline" class="ano-field">
+                <mat-label>Ano</mat-label>
+                <input matInput maxlength="4" formControlName="ano" type="text" mask="0000" placeholder="AAAA" />
+            </mat-form-field>
+        </div>
+        
+
+        <div class="column">
+            <mat-checkbox (click)="tratarCheckBox('despesa')" formControlName="despesasCheck" class="check-form">
+                <mat-label>Apenas despesas</mat-label>
+            </mat-checkbox>
+            <mat-checkbox (click)="tratarCheckBox('receita')" formControlName="receitasCheck" class="check-form">
+                <mat-label>Apenas receitas</mat-label>
+            </mat-checkbox>
+        </div>
+        
+    </form>
+    <hr />
+</div>

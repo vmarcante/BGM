@@ -15,6 +15,7 @@ import { NgxMaskModule } from 'ngx-mask'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
+import { FiltroExtratoComponent } from './components/filtro-extrato/filtro-extrato.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
     SobreComponent,
     ExtratoComponent,
     ExtratoMesComponent,
-    ExtratoDiaComponent
+    ExtratoDiaComponent,
+    FiltroExtratoComponent
   ],
   imports: [
     BrowserModule,
