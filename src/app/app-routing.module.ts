@@ -4,8 +4,7 @@ import { SobreComponent } from './sobre/sobre.component';
 import { ExtratoComponent } from './extrato/extrato.component';
 
 const routes: Routes = [
-  {path: 'transacao', redirectTo: 'transacao/', pathMatch: 'full'},
-  {path: '', redirectTo: 'transacao/', pathMatch: 'full'},
+  {path: '', redirectTo: 'extrato', pathMatch: 'full'},
   {path: 'sobre', component: SobreComponent},
   {path: 'extrato', component: ExtratoComponent}
 ];
