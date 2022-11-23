@@ -1,5 +1,5 @@
-import { Transacao } from './../../models/transacao.model';
-import { TransacaoMes } from './../../models/transacoesMes.model';
+import { Transacao } from './../../../models/transacao.model';
+import { TransacaoMes } from './../../../models/transacoesMes.model';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

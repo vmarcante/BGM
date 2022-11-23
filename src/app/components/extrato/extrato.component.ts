@@ -1,9 +1,9 @@
 import { Transacao } from 'src/app/models/transacao.model';
-import { TransacaoMes } from './../models/transacoesMes.model';
+import { TransacaoMes } from './../../models/transacoesMes.model';
 import { Component, OnInit } from '@angular/core';
-import { TransacoesService } from '../services/transacoes/transacoes.service';
+import { TransacoesService } from '../../services/transacoes/transacoes.service';
 import { Router } from '@angular/router';
-import { UtilService } from '../services/shared/util.service';
+import { UtilService } from '../../services/shared/util.service';
 
 @Component({
   selector: 'app-extrato',

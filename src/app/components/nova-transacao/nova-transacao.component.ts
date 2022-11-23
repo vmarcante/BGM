@@ -1,4 +1,4 @@
-import { Transacao } from '../models/transacao.model';
+import { Transacao } from '../../models/transacao.model';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { TransacoesService } from 'src/app/services/transacoes/transacoes.service';
 import * as moment from 'moment';
-import { UtilService } from '../services/shared/util.service';
+import { UtilService } from '../../services/shared/util.service';
 
 @Component({
   selector: 'app-nova-transacao',
@@ -58,6 +58,7 @@ export class NovaTransacaoComponent implements OnInit {
       };
 
       this.dadosEdicao = res;
+      console.log(res);
       this.formulario = this.setupForm(this.edicaoTransacao.edicao);
       this.tipoFormulario = this.form.group({
         tipoTransacao: new FormControl(this.edicaoTransacao.tipo, [Validators.required])
@@ -69,6 +70,7 @@ export class NovaTransacaoComponent implements OnInit {
   setupForm(edicao: boolean) {
     let formulario;
     if (edicao) {
+      console.log(this.dadosEdicao.parcelas);
       formulario = this.form.group({
         nomeItem: new FormControl(this.dadosEdicao.nome, [Validators.required]),
         valor: new FormControl(this.dadosEdicao.valor, [

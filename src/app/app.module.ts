@@ -1,11 +1,11 @@
 //Componentes
-import { NovaTransacaoComponent } from './nova-transacao/nova-transacao.component';
-import { SobreComponent } from './sobre/sobre.component';
+import { NovaTransacaoComponent } from './components/nova-transacao/nova-transacao.component';
+import { SobreComponent } from './components/sobre/sobre.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ExtratoMesComponent } from './extrato/extrato-mes/extrato-mes.component';
-import { ExtratoComponent } from './extrato/extrato.component';
-import { ExtratoDiaComponent } from './extrato/extrato-mes/extrato-dia/extrato-dia.component';
+import { ExtratoMesComponent } from './components/extrato/extrato-mes/extrato-mes.component';
+import { ExtratoComponent } from './components/extrato/extrato.component';
+import { ExtratoDiaComponent } from './components/extrato/extrato-mes/extrato-dia/extrato-dia.component';
 
 import { MaterialBaseModule } from './material-base.module';
 import { NgModule } from '@angular/core';

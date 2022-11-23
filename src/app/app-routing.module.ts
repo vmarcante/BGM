@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SobreComponent } from './sobre/sobre.component';
-import { ExtratoComponent } from './extrato/extrato.component';
+import { SobreComponent } from './components/sobre/sobre.component';
+import { ExtratoComponent } from './components/extrato/extrato.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'extrato', pathMatch: 'full'},
