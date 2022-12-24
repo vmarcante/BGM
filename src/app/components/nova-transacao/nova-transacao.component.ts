@@ -23,12 +23,14 @@ export class NovaTransacaoComponent implements OnInit {
   dataLabel = "Data de Compra";
   parcelamento: any[];
   isLoading: boolean = false;
+
   edicaoTransacao: any = {
     edicao: false,
     id: 0,
     tipo: '',
   };
-  dadosEdicao: any = {};
+
+  dadosEdicao: Transacao = this.transacaoService.getNovaTransacaoModel();
 
   constructor(
     private form: FormBuilder,
@@ -50,7 +52,7 @@ export class NovaTransacaoComponent implements OnInit {
   }
 
   getDadosParaEdicao(id: number) {
-    this.transacaoService.getDadosTransacao(id).subscribe((res: any) => {
+    this.transacaoService.getDadosTransacao(id).subscribe((res: Transacao) => {
       this.edicaoTransacao = {
         edicao: res.tipo == 'despesa' || res.tipo == 'receita' ? true : false,
         id: id,

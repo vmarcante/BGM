@@ -11,6 +11,16 @@ export class TransacoesService {
   constructor( private httpClient: HttpClient) {
   }
 
+  getNovaTransacaoModel() {
+    let transacao : Transacao = {
+      tipo: 'despesa',
+      nome: '',
+      valor: 0,
+      data: new Date().toDateString(),
+    }
+    return transacao
+  }
+
   getAllTransacoes() {
     return this.httpClient.get<any[]>('http://localhost:3000/transacoes?_sort=data&_order=asc');
   }
