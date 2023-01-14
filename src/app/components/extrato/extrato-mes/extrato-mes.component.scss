@@ -8,7 +8,18 @@
   border-radius: 4px;
   width: 367px;
   height: 283px;
+  animation: fadeInWithSlide .5s;
 
+}
+
+@keyframes fadeInWithSlide {
+  from {
+    margin-left: 100px;
+    opacity: 0.3;
+  } to {
+    margin-left: 2px;
+    opacity: 1;
+  }
 }
 
 .mes-header {

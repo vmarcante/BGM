@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { FiltroExtratoComponent } from './components/filtro-extrato/filtro-extrato.component';
+import { ConfirmarExclusaoComponent } from './components/modals/confirmar-exclusao/confirmar-exclusao.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FiltroExtratoComponent } from './components/filtro-extrato/filtro-extra
     ExtratoComponent,
     ExtratoMesComponent,
     ExtratoDiaComponent,
-    FiltroExtratoComponent
+    FiltroExtratoComponent,
+    ConfirmarExclusaoComponent
   ],
   imports: [
     BrowserModule,

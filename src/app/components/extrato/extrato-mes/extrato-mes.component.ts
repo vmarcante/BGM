@@ -1,4 +1,3 @@
-import { Transacao } from './../../../models/transacao.model';
 import { TransacaoMes } from './../../../models/transacoesMes.model';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -13,6 +12,7 @@ export class ExtratoMesComponent implements OnInit {
 
   constructor() {
     this.mes = {
+      ano: (new Date().getFullYear).toString(),
       montanteMes: 0,
       nomeMes: '',
       saldoFinalMes: 0,

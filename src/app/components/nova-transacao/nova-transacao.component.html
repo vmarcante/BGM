@@ -1,9 +1,9 @@
 <div class="container-despesa">
-  
+
   <div class="row space-between">
     <h2 id="titulo" class="titulo-transacao">Nova Transação</h2>
 
-    <form [formGroup]="tipoFormulario">
+    <form [formGroup]="formulario">
       <mat-form-field appearance="outline" class="tipo-transacao-form">
         <mat-label>Tipo</mat-label>
         <mat-select formControlName="tipoTransacao">
@@ -20,7 +20,7 @@
   <form [formGroup]="formulario">
     <mat-form-field appearance="outline" class="name-form">
       <mat-label>{{nomeLabel}}</mat-label>
-      <input matInput maxlength="40" formControlName="nomeItem" placeholder={{placeholderNome}} />
+      <input id="descricao-form" matInput maxlength="40" formControlName="descricao" placeholder={{placeholderNome}} />
     </mat-form-field>
 
     <div class="auxiliar-forms">
@@ -32,15 +32,14 @@
 
       <mat-form-field appearance="outline" class="date-form">
         <mat-label>{{dataLabel}}</mat-label>
-        <input matInput formControlName="dataCompra" type="text" mask="d0/M0/0000" placeholder="Insira uma data"
+        <input matInput formControlName="dataTransacao" type="text" mask="d0/M0/0000" placeholder="Insira uma data"
           [leadZeroDateTime]="true" [dropSpecialCharacters]="false">
       </mat-form-field>
 
-      <div fxLayout="column" style="align-items: center;"
-        *ngIf="tipoFormulario.get('tipoTransacao')?.value == 'despesa'">
+      <div fxLayout="column" style="align-items: center;" *ngIf="formulario.get('tipoTransacao')?.value == 'despesa'">
         <mat-form-field appearance="outline" class="parcelas-form">
           <mat-label>Parcelamento</mat-label>
-          <mat-select formControlName="parcelas">
+          <mat-select formControlName="parcela">
             <mat-option *ngFor="let parcela of parcelamento" [value]="parcela.parcelas">
               {{ parcela.nome }}
             </mat-option>
@@ -52,7 +51,7 @@
         </mat-checkbox>
       </div>
 
-      <div *ngIf="tipoFormulario.get('tipoTransacao')?.value == 'receita'" style="margin-top: 20px">
+      <div *ngIf="formulario.get('tipoTransacao')?.value == 'receita'" style="margin-top: 20px">
         <mat-checkbox (change)="toggleForm()" formControlName="recorrente" class="check-form">
           <mat-label>Recorrente</mat-label>
         </mat-checkbox>

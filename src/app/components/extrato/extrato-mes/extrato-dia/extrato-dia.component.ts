@@ -1,6 +1,6 @@
 import { ExtratoComponent } from './../../extrato.component';
 import { Component, Input, OnInit } from '@angular/core';
-import { TransacoesService } from 'src/app/services/transacoes/transacoes.service';
+import { TransacaoService } from 'src/app/services/transacoes/transacao.service';
 import { UtilService } from 'src/app/services/shared/util.service';
 
 @Component({
@@ -13,27 +13,25 @@ export class ExtratoDiaComponent implements OnInit {
   @Input() transacao : any;
   detalhes : boolean = false;
   valorTotal : number = 0;
+  itemModal : any = null;
 
   constructor(
-    private transacaoService : TransacoesService,
+    private transacaoService : TransacaoService,
     private utilService: UtilService,
     private extratoGeral : ExtratoComponent
     ) { this.transacao = {} }
 
   ngOnInit() {
-    this.transacao.data = this.transacao.data.split('/')[0] + "/" + this.transacao.data.split('/')[1];
+    this.transacao.dataTransacao = this.transacao.dataTransacao.split('/')[0] + "/" + this.transacao.dataTransacao.split('/')[1];
     if (this.transacao.parcelas > 1) {
       this.valorTotal = this.transacao.valor * this.transacao.parcelas;
     }
     this.transacao.valor = (Math.round(this.transacao.valor * 100) / 100).toFixed(this.transacao.valor.toString().includes('.') ? 2 : 0);
   }
 
-  toggleDetalhes() {
-    this.detalhes = !this.detalhes;
-  }
-
-  editarTransacao() {
-    this.utilService.emitChange(this.transacao.id);
+  editarTransacao(transacao : any) {
+    let parcelaDeTransacao : boolean = transacao.idTransacaoOriginal && transacao.idTransacaoOriginal != "";
+    this.utilService.emitChange(parcelaDeTransacao ? transacao.idTransacaoOriginal : transacao.id);
   }
 
   deleteTransacao() {
@@ -41,5 +39,4 @@ export class ExtratoDiaComponent implements OnInit {
       this.extratoGeral.getAllTransacoes();
     });
   }
-
 }

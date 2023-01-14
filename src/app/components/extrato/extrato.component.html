@@ -1,8 +1,8 @@
 <div class="container-extrato">
   <mat-spinner *ngIf="isLoading" class="spinner"></mat-spinner>
-  <div *ngIf="todasTransacoes.length < 1 && !isLoading" class="sem-registro" fxLayout="column">
+  <div *ngIf="transacoesMes.length < 1 && !isLoading" class="sem-registro" fxLayout="column">
     <span> Não há registros!</span>
-    <button (click)="semRegistro()"><strong>Cadastre uma nova transação!</strong></button>
+    <button onclick="document.getElementById('span-button')?.click();"><strong>Cadastre uma nova transação!</strong></button>
   </div>
   <div *ngFor="let mes of transacoesMes">
     <app-extrato-mes [mes]="mes" *ngIf="!isLoading"></app-extrato-mes>

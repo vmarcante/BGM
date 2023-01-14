@@ -1,12 +1,13 @@
 export interface Transacao {
-  tipo: string | number,
-  nome: string,
+  id: string | null,
+  tipoTransacao: string | number,
+  descricao: string,
   valor: number,
-  data: string,
+  dataTransacao: string,
   comentario?: string | null,
-  recorrente?: boolean | number | null,
-  parcelas?: number,
-  parcelaAtual? : number,
-  id?: number,
+  recorrente: boolean | number | null,
+  parcelas: number,
+  parcelaAtual?: number,
+  idTransacaoOriginal? : string | null,
 }
 
